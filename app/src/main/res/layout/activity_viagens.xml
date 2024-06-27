@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/iconlogo"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/editTextDestino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Destino" />
+
+    <EditText
+        android:id="@+id/editTextDataViagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Data da Viagem"
+        android:focusable="false"
+        android:clickable="true"/>
+
+    <EditText
+        android:id="@+id/editTextNumPessoas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Número de Pessoas" />
+
+    <Button
+        android:id="@+id/buttonAddViagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adicionar Viagem" />
+
+    <ListView
+        android:id="@+id/listViewViagens"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

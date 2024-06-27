@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Seção de Gasolina -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/border"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gasolina"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextTotalKm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total estimado de quilômetros" />
+
+            <EditText
+                android:id="@+id/editTextKmPorLitro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Média de quilômetros por litro" />
+
+            <EditText
+                android:id="@+id/editTextCustoPorLitro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Custo médio por litro" />
+
+            <EditText
+                android:id="@+id/editTextTotalVeiculos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total de veículos" />
+
+            <CheckBox
+                android:id="@+id/checkBoxAddGasolina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adicionar à Viagem?" />
+
+        </LinearLayout>
+
+        <!-- Seção de Tarifa Aérea -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/border"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tarifa Aérea"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextCustoPorPessoa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Custo estimado por pessoa" />
+
+            <EditText
+                android:id="@+id/editTextAluguelVeiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Aluguel de veículo" />
+
+            <CheckBox
+                android:id="@+id/checkBoxAddTarifa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adicionar à Viagem?" />
+
+        </LinearLayout>
+
+        <!-- Seção de Refeições -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/border"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Refeições"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextCustoPorRefeicao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Custo estimado por refeição" />
+
+            <EditText
+                android:id="@+id/editTextRefeicoesPorDia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Refeições por dia" />
+
+
+            <CheckBox
+                android:id="@+id/checkBoxAddRefeicoes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adicionar à Viagem?" />
+
+        </LinearLayout>
+
+        <!-- Seção de Hospedagem -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/border"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hospedagem"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextCustoPorNoite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Custo médio por noite" />
+
+            <EditText
+                android:id="@+id/editTextTotalNoites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total de noites" />
+
+            <EditText
+                android:id="@+id/editTextTotalQuartos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total de quartos" />
+
+            <CheckBox
+                android:id="@+id/checkBoxAddHospedagem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adicionar à Viagem?" />
+
+        </LinearLayout>
+
+        <!-- Seção de Entretenimento/Diversos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/border"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Entretenimento/Diversos"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextDescricaoEntretenimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descrição" />
+
+            <EditText
+                android:id="@+id/editTextCustoEntretenimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Custo total" />
+
+            <CheckBox
+                android:id="@+id/checkBoxAddEntretenimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adicionar ao Total?" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonSalvarGastos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar Gastos"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/buttonDeleteViagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Deletar Viagem"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewRelatorio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="Relatório de Custos" />
+
+    </LinearLayout>
+</ScrollView>

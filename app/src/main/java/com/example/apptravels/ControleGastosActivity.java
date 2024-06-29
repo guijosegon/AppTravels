@@ -104,9 +104,8 @@ public class ControleGastosActivity extends AppCompatActivity {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
-                } else {
+                } else
                     Toast.makeText(ControleGastosActivity.this, "Erro ao deletar viagem", Toast.LENGTH_SHORT).show();
-                }
             }
 
             @Override
@@ -137,9 +136,8 @@ public class ControleGastosActivity extends AppCompatActivity {
             API.postGasolina(gasolinaModel, new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (!response.isSuccessful()) {
+                    if (!response.isSuccessful())
                         Toast.makeText(ControleGastosActivity.this, "Erro ao salvar gastos de gasolina", Toast.LENGTH_SHORT).show();
-                    }
                 }
 
                 @Override
@@ -163,9 +161,8 @@ public class ControleGastosActivity extends AppCompatActivity {
             API.postTarifaAerea(tarifaAereaModel, new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (!response.isSuccessful()) {
+                    if (!response.isSuccessful())
                         Toast.makeText(ControleGastosActivity.this, "Erro ao salvar gastos de tarifa aérea", Toast.LENGTH_SHORT).show();
-                    }
                 }
 
                 @Override
@@ -190,9 +187,8 @@ public class ControleGastosActivity extends AppCompatActivity {
             API.postRefeicoes(refeicoesModel, new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (!response.isSuccessful()) {
+                    if (!response.isSuccessful())
                         Toast.makeText(ControleGastosActivity.this, "Erro ao salvar gastos de refeições", Toast.LENGTH_SHORT).show();
-                    }
                 }
 
                 @Override
@@ -218,9 +214,8 @@ public class ControleGastosActivity extends AppCompatActivity {
             API.postHospedagem(hospedagemModel, new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (!response.isSuccessful()) {
+                    if (!response.isSuccessful())
                         Toast.makeText(ControleGastosActivity.this, "Erro ao salvar gastos de hospedagem", Toast.LENGTH_SHORT).show();
-                    }
                 }
 
                 @Override
@@ -242,9 +237,8 @@ public class ControleGastosActivity extends AppCompatActivity {
             API.postEntretenimento(entretenimentoModel, new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (!response.isSuccessful()) {
+                    if (!response.isSuccessful())
                         Toast.makeText(ControleGastosActivity.this, "Erro ao salvar gastos de entretenimento", Toast.LENGTH_SHORT).show();
-                    }
                 }
 
                 @Override
@@ -254,7 +248,6 @@ public class ControleGastosActivity extends AppCompatActivity {
             });
 
             textViewRelatorio.setText(gerarRelatorio());
-
             Toast.makeText(this, "Gastos salvos com sucesso!", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
@@ -266,16 +259,16 @@ public class ControleGastosActivity extends AppCompatActivity {
         API.getGasolinaByViagemId(viagemId, new Callback<GasolinaModel>() {
             @Override
             public void onResponse(Call<GasolinaModel> call, Response<GasolinaModel> response) {
-                if (response.isSuccessful()) {
-                    GasolinaModel gasolina = response.body();
-                    if (gasolina != null) {
-                        editTextTotalKm.setText(String.valueOf(gasolina.getTotalKm()));
-                        editTextKmPorLitro.setText(String.valueOf(gasolina.getKmPorLitro()));
-                        editTextCustoPorLitro.setText(String.valueOf(gasolina.getCustoPorLitro()));
-                        editTextTotalVeiculos.setText(String.valueOf(gasolina.getTotalVeiculos()));
-                        checkBoxAddGasolina.setChecked(gasolina.isAddGasolina());
-                    }
-                }
+                if (!response.isSuccessful()) return;
+
+                GasolinaModel gasolina = response.body();
+                if (gasolina == null) return;
+
+                editTextTotalKm.setText(String.valueOf(gasolina.getTotalKm()));
+                editTextKmPorLitro.setText(String.valueOf(gasolina.getKmPorLitro()));
+                editTextCustoPorLitro.setText(String.valueOf(gasolina.getCustoPorLitro()));
+                editTextTotalVeiculos.setText(String.valueOf(gasolina.getTotalVeiculos()));
+                checkBoxAddGasolina.setChecked(gasolina.isAddGasolina());
             }
 
             @Override
@@ -287,14 +280,14 @@ public class ControleGastosActivity extends AppCompatActivity {
         API.getTarifaAereaByViagemId(viagemId, new Callback<TarifaAereaModel>() {
             @Override
             public void onResponse(Call<TarifaAereaModel> call, Response<TarifaAereaModel> response) {
-                if (response.isSuccessful()) {
-                    TarifaAereaModel tarifaAerea = response.body();
-                    if (tarifaAerea != null) {
-                        editTextCustoPorPessoa.setText(String.valueOf(tarifaAerea.getCustoPorPessoa()));
-                        editTextAluguelVeiculo.setText(String.valueOf(tarifaAerea.getAluguelVeiculo()));
-                        checkBoxAddTarifa.setChecked(tarifaAerea.isAddTarifa());
-                    }
-                }
+                if (!response.isSuccessful()) return;
+
+                TarifaAereaModel tarifaAerea = response.body();
+                if (tarifaAerea == null) return;
+
+                editTextCustoPorPessoa.setText(String.valueOf(tarifaAerea.getCustoPorPessoa()));
+                editTextAluguelVeiculo.setText(String.valueOf(tarifaAerea.getAluguelVeiculo()));
+                checkBoxAddTarifa.setChecked(tarifaAerea.isAddTarifa());
             }
 
             @Override
@@ -306,14 +299,14 @@ public class ControleGastosActivity extends AppCompatActivity {
         API.getRefeicoesByViagemId(viagemId, new Callback<RefeicoesModel>() {
             @Override
             public void onResponse(Call<RefeicoesModel> call, Response<RefeicoesModel> response) {
-                if (response.isSuccessful()) {
-                    RefeicoesModel refeicoes = response.body();
-                    if (refeicoes != null) {
-                        editTextCustoPorRefeicao.setText(String.valueOf(refeicoes.getCustoPorRefeicao()));
-                        editTextRefeicoesPorDia.setText(String.valueOf(refeicoes.getRefeicoesPorDia()));
-                        checkBoxAddRefeicoes.setChecked(refeicoes.isAddRefeicoes());
-                    }
-                }
+                if (!response.isSuccessful()) return;
+
+                RefeicoesModel refeicoes = response.body();
+                if (refeicoes == null) return;
+
+                editTextCustoPorRefeicao.setText(String.valueOf(refeicoes.getCustoPorRefeicao()));
+                editTextRefeicoesPorDia.setText(String.valueOf(refeicoes.getRefeicoesPorDia()));
+                checkBoxAddRefeicoes.setChecked(refeicoes.isAddRefeicoes());
             }
 
             @Override
@@ -325,15 +318,15 @@ public class ControleGastosActivity extends AppCompatActivity {
         API.getHospedagemByViagemId(viagemId, new Callback<HospedagemModel>() {
             @Override
             public void onResponse(Call<HospedagemModel> call, Response<HospedagemModel> response) {
-                if (response.isSuccessful()) {
-                    HospedagemModel hospedagem = response.body();
-                    if (hospedagem != null) {
-                        editTextCustoPorNoite.setText(String.valueOf(hospedagem.getCustoPorNoite()));
-                        editTextTotalNoites.setText(String.valueOf(hospedagem.getTotalNoites()));
-                        editTextTotalQuartos.setText(String.valueOf(hospedagem.getTotalQuartos()));
-                        checkBoxAddHospedagem.setChecked(hospedagem.isAddHospedagem());
-                    }
-                }
+                if (!response.isSuccessful()) return;
+
+                HospedagemModel hospedagem = response.body();
+                if (hospedagem == null) return;
+
+                editTextCustoPorNoite.setText(String.valueOf(hospedagem.getCustoPorNoite()));
+                editTextTotalNoites.setText(String.valueOf(hospedagem.getTotalNoites()));
+                editTextTotalQuartos.setText(String.valueOf(hospedagem.getTotalQuartos()));
+                checkBoxAddHospedagem.setChecked(hospedagem.isAddHospedagem());
             }
 
             @Override
@@ -345,15 +338,15 @@ public class ControleGastosActivity extends AppCompatActivity {
         API.getEntretenimentoByViagemId(viagemId, new Callback<List<EntretenimentoModel>>() {
             @Override
             public void onResponse(Call<List<EntretenimentoModel>> call, Response<List<EntretenimentoModel>> response) {
-                if (response.isSuccessful()) {
-                    List<EntretenimentoModel> entretenimentoList = response.body();
-                    if (entretenimentoList != null && !entretenimentoList.isEmpty()) {
-                        EntretenimentoModel entretenimento = entretenimentoList.get(0);
-                        editTextDescricaoEntretenimento.setText(entretenimento.getDescricao());
-                        editTextCustoEntretenimento.setText(String.valueOf(entretenimento.getCusto()));
-                        checkBoxAddEntretenimento.setChecked(entretenimento.isAddEntretenimento());
-                    }
-                }
+                if (!response.isSuccessful()) return;
+
+                List<EntretenimentoModel> entretenimentoList = response.body();
+                if (entretenimentoList == null || entretenimentoList.isEmpty()) return;
+
+                EntretenimentoModel entretenimento = entretenimentoList.get(0);
+                editTextDescricaoEntretenimento.setText(entretenimento.getDescricao());
+                editTextCustoEntretenimento.setText(String.valueOf(entretenimento.getCusto()));
+                checkBoxAddEntretenimento.setChecked(entretenimento.isAddEntretenimento());
             }
 
             @Override
@@ -370,12 +363,12 @@ public class ControleGastosActivity extends AppCompatActivity {
         API.getHospedagemByViagemId(viagemId, new Callback<HospedagemModel>() {
             @Override
             public void onResponse(Call<HospedagemModel> call, Response<HospedagemModel> response) {
-                if (response.isSuccessful()) {
-                    HospedagemModel hospedagem = response.body();
-                    if (hospedagem != null) {
-                        duracaoViagem[0] = hospedagem.getTotalNoites();
-                    }
-                }
+                if (!response.isSuccessful()) return;
+
+                HospedagemModel hospedagem = response.body();
+                if (hospedagem == null)  return;
+
+                duracaoViagem[0] = hospedagem.getTotalNoites();
             }
 
             @Override
@@ -393,125 +386,125 @@ public class ControleGastosActivity extends AppCompatActivity {
         API.getViagemById(viagemId, new Callback<ViagemModel>() {
             @Override
             public void onResponse(Call<ViagemModel> call, Response<ViagemModel> response) {
-                if (response.isSuccessful()) {
-                    ViagemModel viagem = response.body();
-                    if (viagem != null) {
-                        int numPessoas = viagem.getNumPessoas();
-                        String destino = viagem.getDestino();
-                        String dataViagem = viagem.getDataViagem();
+                if (!response.isSuccessful()) return;
 
-                        API.getGasolinaByViagemId(viagemId, new Callback<GasolinaModel>() {
-                            @Override
-                            public void onResponse(Call<GasolinaModel> call, Response<GasolinaModel> response) {
-                                if (response.isSuccessful()) {
-                                    GasolinaModel gasolina = response.body();
-                                    if (gasolina != null) {
-                                        double custoTotalGasolina = ((gasolina.getTotalKm() / gasolina.getKmPorLitro()) * gasolina.getCustoPorLitro()) / gasolina.getTotalVeiculos();
-                                        report.append("**Gasolina**\n");
-                                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalGasolina)).append("\n\n");
-                                        totalCost[0] += custoTotalGasolina;
-                                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
-                                    }
-                                }
-                            }
+                ViagemModel viagem = response.body();
+                if (viagem == null) return;
 
-                            @Override
-                            public void onFailure(Call<GasolinaModel> call, Throwable t) {
-                                Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de gasolina: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                int numPessoas = viagem.getNumPessoas();
+                String destino = viagem.getDestino();
+                String dataViagem = viagem.getDataViagem();
 
-                        API.getTarifaAereaByViagemId(viagemId, new Callback<TarifaAereaModel>() {
-                            @Override
-                            public void onResponse(Call<TarifaAereaModel> call, Response<TarifaAereaModel> response) {
-                                if (response.isSuccessful()) {
-                                    TarifaAereaModel tarifaAerea = response.body();
-                                    if (tarifaAerea != null) {
-                                        double custoTotalTarifa = (tarifaAerea.getCustoPorPessoa() * numPessoas) + tarifaAerea.getAluguelVeiculo();
-                                        report.append("**Tarifa Aérea**\n");
-                                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalTarifa)).append("\n\n");
-                                        totalCost[0] += custoTotalTarifa;
-                                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
-                                    }
-                                }
-                            }
+                API.getGasolinaByViagemId(viagemId, new Callback<GasolinaModel>() {
+                    @Override
+                    public void onResponse(Call<GasolinaModel> call, Response<GasolinaModel> response) {
+                        if (!response.isSuccessful()) return;
 
-                            @Override
-                            public void onFailure(Call<TarifaAereaModel> call, Throwable t) {
-                                Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de tarifa aérea: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        GasolinaModel gasolina = response.body();
+                        if (gasolina == null) return;
 
-                        API.getRefeicoesByViagemId(viagemId, new Callback<RefeicoesModel>() {
-                            @Override
-                            public void onResponse(Call<RefeicoesModel> call, Response<RefeicoesModel> response) {
-                                if (response.isSuccessful()) {
-                                    RefeicoesModel refeicoes = response.body();
-                                    if (refeicoes != null) {
-                                        int duracaoViagem = getDuracaoViagem();
-                                        double custoTotalRefeicoes = (refeicoes.getRefeicoesPorDia() * numPessoas * refeicoes.getCustoPorRefeicao()) * duracaoViagem;
-                                        report.append("**Refeições**\n");
-                                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalRefeicoes)).append("\n\n");
-                                        totalCost[0] += custoTotalRefeicoes;
-                                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<RefeicoesModel> call, Throwable t) {
-                                Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de refeições: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                        API.getHospedagemByViagemId(viagemId, new Callback<HospedagemModel>() {
-                            @Override
-                            public void onResponse(Call<HospedagemModel> call, Response<HospedagemModel> response) {
-                                if (response.isSuccessful()) {
-                                    HospedagemModel hospedagem = response.body();
-                                    if (hospedagem != null) {
-                                        double custoTotalHospedagem = (hospedagem.getCustoPorNoite() * hospedagem.getTotalNoites()) * hospedagem.getTotalQuartos();
-                                        report.append("**Hospedagem**\n");
-                                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalHospedagem)).append("\n\n");
-                                        totalCost[0] += custoTotalHospedagem;
-                                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<HospedagemModel> call, Throwable t) {
-                                Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de hospedagem: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                        API.getEntretenimentoByViagemId(viagemId, new Callback<List<EntretenimentoModel>>() {
-                            @Override
-                            public void onResponse(Call<List<EntretenimentoModel>> call, Response<List<EntretenimentoModel>> response) {
-                                if (response.isSuccessful()) {
-                                    List<EntretenimentoModel> entretenimentoList = response.body();
-                                    double custoTotalEntretenimento = 0;
-                                    if (entretenimentoList != null && !entretenimentoList.isEmpty()) {
-                                        report.append("**Entretenimento/Diversos**\n");
-                                        for (EntretenimentoModel entretenimento : entretenimentoList) {
-                                            if (entretenimento.isAddEntretenimento()) {
-                                                custoTotalEntretenimento += entretenimento.getCusto();
-                                            }
-                                        }
-                                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalEntretenimento)).append("\n\n");
-                                        totalCost[0] += custoTotalEntretenimento;
-                                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<List<EntretenimentoModel>> call, Throwable t) {
-                                Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de entretenimento: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        double custoTotalGasolina = ((gasolina.getTotalKm() / gasolina.getKmPorLitro()) * gasolina.getCustoPorLitro()) / gasolina.getTotalVeiculos();
+                        report.append("**Gasolina**\n");
+                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalGasolina)).append("\n\n");
+                        totalCost[0] += custoTotalGasolina;
+                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
                     }
-                }
+
+                    @Override
+                    public void onFailure(Call<GasolinaModel> call, Throwable t) {
+                        Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de gasolina: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                API.getTarifaAereaByViagemId(viagemId, new Callback<TarifaAereaModel>() {
+                    @Override
+                    public void onResponse(Call<TarifaAereaModel> call, Response<TarifaAereaModel> response) {
+                        if (!response.isSuccessful()) return;
+
+                        TarifaAereaModel tarifaAerea = response.body();
+                        if (tarifaAerea == null) return;
+
+                        double custoTotalTarifa = (tarifaAerea.getCustoPorPessoa() * numPessoas) + tarifaAerea.getAluguelVeiculo();
+                        report.append("**Tarifa Aérea**\n");
+                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalTarifa)).append("\n\n");
+                        totalCost[0] += custoTotalTarifa;
+                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
+                    }
+
+                    @Override
+                    public void onFailure(Call<TarifaAereaModel> call, Throwable t) {
+                        Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de tarifa aérea: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                API.getRefeicoesByViagemId(viagemId, new Callback<RefeicoesModel>() {
+                    @Override
+                    public void onResponse(Call<RefeicoesModel> call, Response<RefeicoesModel> response) {
+                        if (!response.isSuccessful()) return;
+
+                        RefeicoesModel refeicoes = response.body();
+                        if (refeicoes == null) return;
+
+                        int duracaoViagem = getDuracaoViagem();
+                        double custoTotalRefeicoes = (refeicoes.getRefeicoesPorDia() * numPessoas * refeicoes.getCustoPorRefeicao()) * duracaoViagem;
+                        report.append("**Refeições**\n");
+                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalRefeicoes)).append("\n\n");
+                        totalCost[0] += custoTotalRefeicoes;
+                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
+                    }
+
+                    @Override
+                    public void onFailure(Call<RefeicoesModel> call, Throwable t) {
+                        Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de refeições: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                API.getHospedagemByViagemId(viagemId, new Callback<HospedagemModel>() {
+                    @Override
+                    public void onResponse(Call<HospedagemModel> call, Response<HospedagemModel> response) {
+                        if (!response.isSuccessful()) return;
+
+                        HospedagemModel hospedagem = response.body();
+                        if (hospedagem == null) return;
+
+                        double custoTotalHospedagem = (hospedagem.getCustoPorNoite() * hospedagem.getTotalNoites()) * hospedagem.getTotalQuartos();
+                        report.append("**Hospedagem**\n");
+                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalHospedagem)).append("\n\n");
+                        totalCost[0] += custoTotalHospedagem;
+                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
+                    }
+
+                    @Override
+                    public void onFailure(Call<HospedagemModel> call, Throwable t) {
+                        Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de hospedagem: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                API.getEntretenimentoByViagemId(viagemId, new Callback<List<EntretenimentoModel>>() {
+                    @Override
+                    public void onResponse(Call<List<EntretenimentoModel>> call, Response<List<EntretenimentoModel>> response) {
+                        if (!response.isSuccessful()) return;
+
+                        List<EntretenimentoModel> entretenimentoList = response.body();
+                        double custoTotalEntretenimento = 0;
+                        if (entretenimentoList == null || entretenimentoList.isEmpty()) return;
+
+                        report.append("**Entretenimento/Diversos**\n");
+                        for (EntretenimentoModel entretenimento : entretenimentoList) {
+                            if (entretenimento.isAddEntretenimento()) {
+                                custoTotalEntretenimento += entretenimento.getCusto();
+                            }
+                        }
+                        report.append("Custo Total: R$ ").append(String.format("%.2f", custoTotalEntretenimento)).append("\n\n");
+                        totalCost[0] += custoTotalEntretenimento;
+                        atualizarRelatorio(report, totalCost[0], numPessoas, destino, dataViagem);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<EntretenimentoModel>> call, Throwable t) {
+                        Toast.makeText(ControleGastosActivity.this, "Erro ao carregar dados de entretenimento: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override

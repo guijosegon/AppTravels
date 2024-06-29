@@ -114,16 +114,15 @@ public class ViagensActivity extends AppCompatActivity {
         API.postViagem(viagem, new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(ViagensActivity.this, "Viagem adicionada com sucesso!", Toast.LENGTH_SHORT).show();
-                    loadViagens();
-
-                    editTextDestino.setText("");
-                    editTextDataViagem.setText("");
-                    editTextNumPessoas.setText("");
-                } else {
+                if (!response.isSuccessful())
                     Toast.makeText(ViagensActivity.this, "Erro ao adicionar viagem", Toast.LENGTH_SHORT).show();
-                }
+
+                Toast.makeText(ViagensActivity.this, "Viagem adicionada com sucesso!", Toast.LENGTH_SHORT).show();
+                loadViagens();
+
+                editTextDestino.setText("");
+                editTextDataViagem.setText("");
+                editTextNumPessoas.setText("");
             }
 
             @Override
@@ -137,13 +136,12 @@ public class ViagensActivity extends AppCompatActivity {
         API.getViagens(new Callback<List<ViagemModel>>() {
             @Override
             public void onResponse(Call<List<ViagemModel>> call, Response<List<ViagemModel>> response) {
-                if (response.isSuccessful()) {
-                    listaViagens.clear();
-                    listaViagens.addAll(response.body());
-                    adapter.notifyDataSetChanged();
-                } else {
+                if (response.isSuccessful())
                     Toast.makeText(ViagensActivity.this, "Erro ao carregar viagens", Toast.LENGTH_SHORT).show();
-                }
+
+                listaViagens.clear();
+                listaViagens.addAll(response.body());
+                adapter.notifyDataSetChanged();
             }
 
             @Override

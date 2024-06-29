@@ -3,8 +3,6 @@ package com.example.apptravels.banco.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Path;
-
 import com.example.apptravels.banco.DBOpenHelper;
 import com.example.apptravels.banco.model.TarifaAereaModel;
 

@@ -1,7 +1,6 @@
 package com.example.apptravels.banco.dao;
 
 import android.database.sqlite.SQLiteDatabase;
-
 import com.example.apptravels.banco.DBOpenHelper;
 
 public abstract class AbstratDAO {

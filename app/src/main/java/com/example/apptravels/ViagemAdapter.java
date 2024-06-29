@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import com.example.apptravels.banco.model.ViagemModel;
-
 import java.util.List;
 
 public class ViagemAdapter extends ArrayAdapter<ViagemModel> {
@@ -21,9 +19,8 @@ public class ViagemAdapter extends ArrayAdapter<ViagemModel> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViagemModel viagem = getItem(position);
 
-        if (convertView == null) {
+        if (convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_viagem, parent, false);
-        }
 
         TextView textViewDestino = convertView.findViewById(R.id.textViewDestino);
         TextView textViewDataViagem = convertView.findViewById(R.id.textViewDataViagem);

@@ -57,28 +57,26 @@ public class LoginActivity extends AppCompatActivity {
         API.getUsuarios(new Callback<List<UsuarioModel>>() {
             @Override
             public void onResponse(Call<List<UsuarioModel>> call, Response<List<UsuarioModel>> response) {
-                if (response.isSuccessful()) {
-                    List<UsuarioModel> usuarios = response.body();
-                    boolean isAuthenticated = false;
-
-                    for (UsuarioModel usuario : usuarios) {
-                        if (usuario.getUsuario().equals(username) && usuario.getSenha().equals(password)) {
-                            isAuthenticated = true;
-                            break;
-                        }
-                    }
-
-                    if (isAuthenticated) {
-                        Toast.makeText(LoginActivity.this, "Login realizado com sucesso", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, ViagensActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
+                if (!response.isSuccessful())
                     Toast.makeText(LoginActivity.this, "Erro ao autenticar usuário", Toast.LENGTH_SHORT).show();
+
+                List<UsuarioModel> usuarios = response.body();
+                boolean isAuthenticated = false;
+
+                for (UsuarioModel usuario : usuarios) {
+                    if (usuario.getUsuario().equals(username) && usuario.getSenha().equals(password)) {
+                        isAuthenticated = true;
+                        break;
+                    }
                 }
+
+                if (isAuthenticated) {
+                    Toast.makeText(LoginActivity.this, "Login realizado com sucesso", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, ViagensActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else
+                    Toast.makeText(LoginActivity.this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
             }
 
             @Override

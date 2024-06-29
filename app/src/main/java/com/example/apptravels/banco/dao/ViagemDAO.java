@@ -3,10 +3,8 @@ package com.example.apptravels.banco.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-
 import com.example.apptravels.banco.DBOpenHelper;
 import com.example.apptravels.banco.model.ViagemModel;
-
 import java.util.ArrayList;
 import java.util.List;
 

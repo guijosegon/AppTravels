@@ -1,9 +1,7 @@
 package com.example.apptravels.API.endpoint;
 
 import com.example.apptravels.banco.model.HospedagemModel;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
